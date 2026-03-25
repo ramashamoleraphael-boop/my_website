@@ -20,13 +20,14 @@
     --transition: all 0.3s ease;
 }
 
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Set font and background for the whole page */
+/* Body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-light);
@@ -34,28 +35,44 @@ body {
     line-height: 1.6;
 }
 
-/* ---- TOP NAVIGATION BAR (Enhanced) ---- */
+/* ===========================
+   NAVIGATION BAR
+   =========================== */
 nav {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-navy) 100%);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-navy));
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-nav a {
-    color: #ffffff;
+.nav-logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
     text-decoration: none;
-    margin-right: 1.5rem;
-    font-size: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
     font-weight: 500;
-    transition: var(--transition);
     position: relative;
     padding-bottom: 4px;
+    transition: var(--transition);
 }
 
-nav a::after {
+.nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -66,32 +83,24 @@ nav a::after {
     transition: var(--transition);
 }
 
-nav a:hover::after {
+.nav-links a:hover::after {
     width: 100%;
 }
 
-nav a:hover {
+.nav-links a:hover {
     color: var(--primary-gold);
 }
 
-/* Mobile Navigation */
-@media (max-width: 768px) {
-    nav {
-        text-align: center;
-        padding: 1rem;
-    }
-    
-    nav a {
-        display: inline-block;
-        margin: 0.5rem 0.8rem;
-        font-size: 0.9rem;
-    }
+.nav-links a.active {
+    color: var(--primary-gold);
 }
 
-/* ---- PAGE HEADER (Enhanced) ---- */
+/* ===========================
+   HEADER / PAGE BANNER
+   =========================== */
 .header {
-    background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-dark) 100%);
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--primary-navy), var(--primary-dark));
+    color: #fff;
     padding: 4rem 2rem;
     text-align: center;
     position: relative;
@@ -110,7 +119,7 @@ nav a:hover {
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
+    0%,100% { transform: scale(1); opacity: 0.5; }
     50% { transform: scale(1.1); opacity: 0.8; }
 }
 
@@ -127,23 +136,19 @@ nav a:hover {
     color: #e0e0e0;
     position: relative;
     z-index: 1;
-    animation: fadeInUp 0.8s ease 0.2s forwards;
     opacity: 0;
+    animation: fadeInUp 0.8s ease 0.2s forwards;
     animation-fill-mode: forwards;
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* ---- MAIN CONTENT AREA (Enhanced) ---- */
+/* ===========================
+   CONTENT SECTIONS
+   =========================== */
 .content {
     max-width: 1200px;
     margin: 2rem auto;
@@ -167,10 +172,6 @@ nav a:hover {
     font-size: 1.8rem;
 }
 
-.content h2:first-of-type {
-    margin-top: 0;
-}
-
 .content h3 {
     color: var(--primary-navy);
     margin: 1rem 0 0.5rem 0;
@@ -184,9 +185,11 @@ nav a:hover {
     margin-bottom: 1rem;
 }
 
-/* ---- BUTTON STYLE (Enhanced) ---- */
+/* ===========================
+   BUTTONS
+   =========================== */
 a.button, button.button {
-    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-gold-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
     color: var(--primary-navy);
     padding: 0.875rem 2rem;
     text-decoration: none;
@@ -204,10 +207,12 @@ a.button, button.button {
 a.button:hover, button.button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-    background: linear-gradient(135deg, var(--primary-gold-dark) 0%, var(--primary-gold) 100%);
+    background: linear-gradient(135deg, var(--primary-gold-dark), var(--primary-gold));
 }
 
-/* ---- IMAGES (Enhanced) ---- */
+/* ===========================
+   IMAGES
+   =========================== */
 img {
     width: 100%;
     max-width: 600px;
@@ -222,165 +227,13 @@ img:hover {
     box-shadow: var(--shadow-lg);
 }
 
-/* ---- LISTS (Enhanced) ---- */
-ul, ol {
-    padding-left: 1.5rem;
-    color: var(--text-light);
-    margin: 1rem 0;
-}
-
-ul li, ol li {
-    margin: 0.5rem 0;
-}
-
-ul {
-    list-style-type: none;
-}
-
-ul li {
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-ul li::before {
-    content: '▹';
-    color: var(--primary-gold);
-    position: absolute;
-    left: 0;
-}
-
-ol {
-    list-style-type: none;
-    counter-reset: item;
-}
-
-ol li {
-    counter-increment: item;
-    position: relative;
-    padding-left: 2rem;
-}
-
-ol li::before {
-    content: counter(item) ".";
-    color: var(--primary-gold);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
-
-/* ---- TABLE (Enhanced) ---- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-}
-
-th {
-    background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-dark) 100%);
-    color: #ffffff;
-    padding: 1rem;
-    text-align: left;
-    font-weight: 600;
-}
-
-td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-light);
-    color: var(--text-light);
-}
-
-tr:hover {
-    background-color: rgba(232, 168, 56, 0.05);
-}
-
-/* Responsive Table */
-@media (max-width: 768px) {
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-}
-
-/* ---- FORM (Enhanced) ---- */
-form {
-    background-color: var(--bg-light);
-    padding: 2rem;
-    border-radius: 1rem;
-    margin: 1.5rem 0;
-}
-
-form p {
-    margin-bottom: 1rem;
-}
-
-form label {
-    display: block;
-    font-weight: 600;
-    color: var(--primary-navy);
-    margin-bottom: 0.5rem;
-}
-
-form input, form select, form textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid var(--border-light);
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    transition: var(--transition);
-    font-family: inherit;
-}
-
-form input:focus, form select:focus, form textarea:focus {
-    outline: none;
-    border-color: var(--primary-gold);
-    box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.1);
-}
-
-form input[type="submit"] {
-    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-gold-dark) 100%);
-    color: var(--primary-navy);
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    width: auto;
-    padding: 0.875rem 2rem;
-}
-
-form input[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-/* ---- VIDEO CONTAINER ---- */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: 0.75rem;
-    margin: 1rem 0;
-    box-shadow: var(--shadow-md);
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-/* ---- CARDS (For services/features) ---- */
-.card-container {
+/* ===========================
+   CARDS
+   =========================== */
+.cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin: 2rem 0;
 }
 
 .card {
@@ -408,37 +261,42 @@ form input[type="submit"]:hover {
     margin-bottom: 0;
 }
 
-/* ---- STATS SECTION ---- */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-    text-align: center;
+/* ===========================
+   TWO COLUMN LAYOUT
+   =========================== */
+.two-col {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.stat-item {
-    padding: 1.5rem;
-    background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
-    border-radius: 1rem;
-    border: 1px solid var(--border-light);
+/* ===========================
+   LIST STYLES
+   =========================== */
+ul.styled-list {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: bold;
+ul.styled-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+ul.styled-list li::before {
+    content: '▹';
     color: var(--primary-gold);
-    display: block;
+    position: absolute;
+    left: 0;
 }
 
-.stat-label {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-}
-
-/* ---- FOOTER (Enhanced) ---- */
+/* ===========================
+   FOOTER
+   =========================== */
 footer {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-navy) 100%);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-navy));
     color: #cccccc;
     text-align: center;
     padding: 2rem;
@@ -448,52 +306,37 @@ footer {
 footer a {
     color: var(--primary-gold);
     text-decoration: none;
-    transition: var(--transition);
 }
 
 footer a:hover {
     text-decoration: underline;
 }
 
-/* ---- RESPONSIVE DESIGN ---- */
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
 @media (max-width: 768px) {
+    .two-col {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
     .header h1 {
         font-size: 2rem;
     }
-    
+
     .header p {
         font-size: 1rem;
-    }
-    
-    .content {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
-    
-    .content h2 {
-        font-size: 1.5rem;
-    }
-    
-    .card-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
-    .stats {
+    .cards-grid {
         grid-template-columns: 1fr;
-    }
-    
-    nav a {
-        margin: 0.3rem 0.6rem;
-        font-size: 0.8rem;
-    }
-    
-    .content {
-        padding: 1rem;
     }
 }
